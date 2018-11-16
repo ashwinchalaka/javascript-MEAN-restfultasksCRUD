@@ -1,0 +1,32 @@
+
+<div style="text-align:center">
+  <h1>Welcome to {{ title }}!</h1>
+</div>
+
+  <h1>New Task</h1>
+  <form (submit)="onCreateSubmit()">
+    <!-- <p> {{ newTask | json }} </p> -->
+    Title: <input type="text" name="newTask.title" [(ngModel)]="newTask.title" />
+    Description: <input type="text" name="newTask.description" [(ngModel)]="newTask.description" />
+    <input type="submit" value="Create Task" />
+  </form>
+  
+  <h1>Task List</h1>
+  <div *ngFor="let task of allTasks" style="display: inline-block;">
+    <div style="display: inline-block; margin: 10px; text-align: center; border: 1px solid black; padding: 5px 10px;">
+        <h4 style="display: block;">{{task['title']}}</h4>
+        <h4 style="display: block;">{{task['description']}}</h4>
+        <button (click)="onEditPressed(task['_id'])">Edit</button>
+        <button (click)="onDeletePressed(task['_id'])">Delete</button>
+      </div>
+    </div>
+      
+  <h1>Edit Task</h1>
+  <!-- <p> {{ editTask | json }} </p> -->
+  <form (submit)="onEditSubmit()">
+      Title: <input type="text" name="editTask.title" [(ngModel)]="editTask.title" />
+      Description: <input type="text" name="editTask.description" [(ngModel)]="editTask.description" />
+      <input type="submit" value="Update Task" />
+  </form>
+
+<router-outlet></router-outlet>
